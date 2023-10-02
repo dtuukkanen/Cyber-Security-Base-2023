@@ -8,5 +8,15 @@
         <h1>Hello List!</h1>
 
         <ul>
+        {% for item in items %}
+            <li>{{item}}</li>
+        {% endfor %}
+        </ul>
+
+        <form method="post">
+        {% csrf_token %}
+        <input type="text" name="content"/>
+        <input type="submit" value="Click!"/>
+        </form>
     </body>
 </html>
