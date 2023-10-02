@@ -5,7 +5,10 @@ from django.template import loader
 # Create your views here.
 
 def homePageView(request):
-	return HttpResponse('Home page')
+    template = loader.get_template('pages/index.html')
+    return HttpResponse(template.render())
+
 
 def videoPageView(request):
-	return HttpResponse("This is where I'd put my video, if I had any")
+    template = loader.get_template('pages/video.html')
+    return HttpResponse(template.render())
