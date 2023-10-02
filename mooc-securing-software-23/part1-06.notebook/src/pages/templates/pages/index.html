@@ -8,15 +8,23 @@
         <h1>Hello Notes!</h1>
 
         <ul>
+            {%for item in items%}
+                <li>{{item}}</li>
+            {%endfor%}
 		</ul>
 
-
-
         <h2>Add content to list</h2>
-
+        <form action="/add" method="post">
+            {% csrf_token %}
+            <input type="text" name="content" />
+            <input type="submit" value="Add" />
+        </form>
 
         <h2>Clear everything</h2>
-
+        <form action="/erase" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Clear" />
+        </form>
 
     </body>
 </html>
