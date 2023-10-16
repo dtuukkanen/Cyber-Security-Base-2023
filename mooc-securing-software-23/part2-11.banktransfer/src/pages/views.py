@@ -8,7 +8,7 @@ from .models import Account
 
 @transaction.atomic
 def transfer(sender, receiver, amount):
-    if amount < 0:
+    if amount <= 0:
         return
     elif sender == receiver:
         return
