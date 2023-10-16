@@ -4,29 +4,30 @@ import sqlite3
 
 
 def read_database(conn):
-	agents = []
+    agents = []
 
-	# output should be a list of pairs
-	# agents = [(id1, name1), (id2, name2), (id3, name3), ...] ordered by id
+    # output should be a list of pairs
+    # agents = [(id1, name1), (id2, name2), (id3, name3), ...] ordered by id
 
+    # write code here
+    cursor = conn.cursor()
+    agents = cursor.execute("SELECT * FROM Agent ORDER BY id").fetchall()
 
-	# write code here
-
-	return agents
-
+    return agents
 
 
 def main(argv):
-	name = sys.argv[1]
-	conn = sqlite3.connect(name)
-	agents = read_database(conn)
-	for agent in agents:
-		print(agent[0], agent[1])
+    name = sys.argv[1]
+    conn = sqlite3.connect(name)
+    agents = read_database(conn)
+    for agent in agents:
+        print(agent[0], agent[1])
+
 
 # This makes sure the main function is not called immediatedly
 # when TMC imports this module
-if __name__ == "__main__": 
-	if len(sys.argv) != 2:
-		print('usage: python %s database' % sys.argv[0])
-	else:
-		main(sys.argv)
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print('usage: python %s database' % sys.argv[0])
+    else:
+        main(sys.argv)
