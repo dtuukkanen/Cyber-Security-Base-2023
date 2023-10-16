@@ -5,7 +5,11 @@ from .models import Message
 # Create your views here.
 
 def homePageView(request):
-	content = 'Hello Web!';
+    # The id of the message is given as a GET parameter id.
+    content = 'Hello, Web!'
 
-		
-	return HttpResponse(content)
+    if request.method == 'GET':
+        id = int(request.GET.get('id'))
+        content = Message.objects.get(pk=id).content
+
+    return HttpResponse(content)
