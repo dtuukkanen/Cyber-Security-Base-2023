@@ -4,20 +4,25 @@ import json
 
 
 def test_session(address):
-	# write your code here
-	return None
-
+    # write your code here
+    for i in range(1, 12):
+        response = requests.get(url=address + '/balance',
+                                cookies=dict(sessionid='session-' + str(i)))
+        response_json = json.loads(response.text)
+        if (response_json["username"] == "alice"):
+            return response_json["balance"]
+    return None
 
 
 def main(argv):
-	address = sys.argv[1]
-	print(test_session(address))
+    address = sys.argv[1]
+    print(test_session(address))
 
 
 # This makes sure the main function is not called immediatedly
 # when TMC imports this module
-if __name__ == "__main__": 
-	if len(sys.argv) != 2:
-		print('usage: python %s address' % sys.argv[0])
-	else:
-		main(sys.argv)
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print('usage: python %s address' % sys.argv[0])
+    else:
+        main(sys.argv)
